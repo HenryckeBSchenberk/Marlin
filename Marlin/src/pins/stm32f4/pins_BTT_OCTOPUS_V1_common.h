@@ -24,7 +24,7 @@
 #include "env_validate.h"
 
 #define HAS_OTG_USB_HOST_SUPPORT                  // USB Flash Drive support
-#define USES_DIAG_JUMPERS
+// #define USES_DIAG_JUMPERS
 
 // Onboard I2C EEPROM
 #define I2C_EEPROM
@@ -46,16 +46,68 @@
 #define LED_PIN                             PA13
 
 //
+// Drivers pins
+//
+
+#define DRIVER0_ENABLE_PIN                  PF14
+#define DRIVER0_STEP_PIN                    PF13
+#define DRIVER0_DIR_PIN                     PF12
+#define DRIVER0_CS_PIN                      PC4
+#define DRIVER0_DIAG_PIN                    PG6
+
+#define DRIVER1_ENABLE_PIN                  PF15
+#define DRIVER1_STEP_PIN                    PG0
+#define DRIVER1_DIR_PIN                     PG1
+#define DRIVER1_CS_PIN                      PD11
+#define DRIVER1_DIAG_PIN                    PG9
+
+#define DRIVER2_ENABLE_PIN                  PG5
+#define DRIVER2_STEP_PIN                    PF11
+#define DRIVER2_DIR_PIN                     PG3
+#define DRIVER2_CS_PIN                      PC6
+#define DRIVER2_DIAG_PIN                    PG10
+
+#define DRIVER3_ENABLE_PIN                  PA0
+#define DRIVER3_STEP_PIN                    PG4
+#define DRIVER3_DIR_PIN                     PC1
+#define DRIVER3_CS_PIN                      PC7
+#define DRIVER3_DIAG_PIN                    PG11
+
+#define DRIVER4_ENABLE_PIN                  PG2
+#define DRIVER4_STEP_PIN                    PF9
+#define DRIVER4_DIR_PIN                     PF10
+#define DRIVER4_CS_PIN                      PF2
+#define DRIVER4_DIAG_PIN                    PG12
+
+#define DRIVER5_ENABLE_PIN                  PF1
+#define DRIVER5_STEP_PIN                    PC13
+#define DRIVER5_DIR_PIN                     PF0
+#define DRIVER5_CS_PIN                      PE4
+#define DRIVER5_DIAG_PIN                    PG13
+
+#define DRIVER6_ENABLE_PIN                  PD4
+#define DRIVER6_STEP_PIN                    PE2
+#define DRIVER6_DIR_PIN                     PE3
+#define DRIVER6_CS_PIN                      PE1
+#define DRIVER6_DIAG_PIN                    PG14
+
+#define DRIVER7_ENABLE_PIN                  PE0
+#define DRIVER7_STEP_PIN                    PE6
+#define DRIVER7_DIR_PIN                     PA14
+#define DRIVER7_CS_PIN                      PD3
+#define DRIVER7_DIAG_PIN                    PG15
+
+//
 // Trinamic Stallguard pins
 //
-#define X_DIAG_PIN                          PG6   // X-STOP
-#define Y_DIAG_PIN                          PG9   // Y-STOP
-#define Z_DIAG_PIN                          PG10  // Z-STOP
-#define Z2_DIAG_PIN                         PG11  // Z2-STOP
-#define E0_DIAG_PIN                         PG12  // E0DET
-#define E1_DIAG_PIN                         PG13  // E1DET
-#define E2_DIAG_PIN                         PG14  // E2DET
-#define E3_DIAG_PIN                         PG15  // E3DET
+#define X_DIAG_PIN                          DRIVER2_DIAG_PIN
+#define Y_DIAG_PIN                          DRIVER0_DIAG_PIN
+#define Z_DIAG_PIN                          DRIVER1_DIAG_PIN
+#define X2_DIAG_PIN                         DRIVER3_DIAG_PIN
+#define Y2_DIAG_PIN                         DRIVER4_DIAG_PIN
+#define Z2_DIAG_PIN                         DRIVER5_DIAG_PIN
+#define E0_DIAG_PIN                         DRIVER6_DIAG_PIN
+#define E1_DIAG_PIN                         DRIVER7_DIAG_PIN
 
 //
 // Z Probe (when not Z_MIN_PIN)
@@ -87,16 +139,16 @@
 #ifdef X_STALL_SENSITIVITY
   #define X_STOP_PIN                  X_DIAG_PIN
   #if X_HOME_TO_MIN
-    #define X_MAX_PIN                E0_DIAG_PIN  // E0DET
+    #define X_MAX_PIN                X2_DIAG_PIN  // E0DET
   #else
-    #define X_MIN_PIN                E0_DIAG_PIN  // E0DET
+    #define X_MIN_PIN                X2_DIAG_PIN  // E0DET
   #endif
 #elif EITHER(DUAL_X_CARRIAGE, NEEDS_X_MINMAX)
   #ifndef X_MIN_PIN
     #define X_MIN_PIN                 X_DIAG_PIN  // X-STOP
   #endif
   #ifndef X_MAX_PIN
-    #define X_MAX_PIN                E0_DIAG_PIN  // E0DET
+    #define X_MAX_PIN                X2_DIAG_PIN  // E0DET
   #endif
 #else
   #define X_STOP_PIN                  X_DIAG_PIN  // X-STOP
@@ -105,16 +157,16 @@
 #ifdef Y_STALL_SENSITIVITY
   #define Y_STOP_PIN                  Y_DIAG_PIN
   #if Y_HOME_TO_MIN
-    #define Y_MAX_PIN                E1_DIAG_PIN  // E1DET
+    #define Y_MAX_PIN                Y2_DIAG_PIN  // E1DET
   #else
-    #define Y_MIN_PIN                E1_DIAG_PIN  // E1DET
+    #define Y_MIN_PIN                Y2_DIAG_PIN  // E1DET
   #endif
 #elif NEEDS_Y_MINMAX
   #ifndef Y_MIN_PIN
     #define Y_MIN_PIN                 Y_DIAG_PIN  // Y-STOP
   #endif
   #ifndef Y_MAX_PIN
-    #define Y_MAX_PIN                E1_DIAG_PIN  // E1DET
+    #define Y_MAX_PIN                Y2_DIAG_PIN  // E1DET
   #endif
 #else
   #define Y_STOP_PIN                  Y_DIAG_PIN  // Y-STOP
@@ -123,16 +175,16 @@
 #ifdef Z_STALL_SENSITIVITY
   #define Z_STOP_PIN                  Z_DIAG_PIN
   #if Z_HOME_TO_MIN
-    #define Z_MAX_PIN                E2_DIAG_PIN  // PWRDET
+    #define Z_MAX_PIN                Z2_DIAG_PIN  // PWRDET
   #else
-    #define Z_MIN_PIN                E2_DIAG_PIN  // PWRDET
+    #define Z_MIN_PIN                Z2_DIAG_PIN  // PWRDET
   #endif
 #elif NEEDS_Z_MINMAX
   #ifndef Z_MIN_PIN
     #define Z_MIN_PIN                 Z_DIAG_PIN  // Z-STOP
   #endif
   #ifndef Z_MAX_PIN
-    #define Z_MAX_PIN                E2_DIAG_PIN  // PWRDET
+    #define Z_MAX_PIN                Z2_DIAG_PIN  // PWRDET
   #endif
 #else
   #define Z_STOP_PIN                  Z_DIAG_PIN  // Z-STOP
@@ -167,61 +219,60 @@
 //
 // Steppers
 //
-#define X_STEP_PIN                          PF13  // MOTOR 0
-#define X_DIR_PIN                           PF12
-#define X_ENABLE_PIN                        PF14
+#define X_STEP_PIN                          DRIVER2_ENABLE_PIN
+#define X_DIR_PIN                           DRIVER2_STEP_PIN
+#define X_ENABLE_PIN                        DRIVER2_DIR_PIN
 #ifndef X_CS_PIN
-  #define X_CS_PIN                          PC4
+  #define X_CS_PIN                          DRIVER2_CS_PIN
 #endif
 
-#define Y_STEP_PIN                          PG0   // MOTOR 1
-#define Y_DIR_PIN                           PG1
-#define Y_ENABLE_PIN                        PF15
+#define Y_STEP_PIN                          DRIVER0_ENABLE_PIN
+#define Y_DIR_PIN                           DRIVER0_STEP_PIN
+#define Y_ENABLE_PIN                        DRIVER0_DIR_PIN
 #ifndef Y_CS_PIN
-  #define Y_CS_PIN                          PD11
+  #define Y_CS_PIN                          DRIVER0_CS_PIN
 #endif
 
-#define Z_STEP_PIN                          PF11  // MOTOR 2
-#define Z_DIR_PIN                           PG3
-#define Z_ENABLE_PIN                        PG5
+#define Z_STEP_PIN                          DRIVER1_ENABLE_PIN
+#define Z_DIR_PIN                           DRIVER1_STEP_PIN
+#define Z_ENABLE_PIN                        DRIVER1_DIR_PIN
 #ifndef Z_CS_PIN
-  #define Z_CS_PIN                          PC6
+  #define Z_CS_PIN                          DRIVER1_CS_PIN
 #endif
 
-#define Z2_STEP_PIN                         PG4   // MOTOR 3
-#define Z2_DIR_PIN                          PC1
-#define Z2_ENABLE_PIN                       PA0
+#define X2_STEP_PIN                         DRIVER3_ENABLE_PIN
+#define X2_DIR_PIN                          DRIVER3_STEP_PIN
+#define X2_ENABLE_PIN                       DRIVER3_DIR_PIN
+#ifndef X2_CS_PIN
+  #define X2_CS_PIN                         DRIVER3_CS_PIN
+#endif
+
+#define Y2_STEP_PIN                         DRIVER4_ENABLE_PIN
+#define Y2_DIR_PIN                          DRIVER4_STEP_PIN
+#define Y2_ENABLE_PIN                       DRIVER4_DIR_PIN
+#ifndef Y2_CS_PIN
+  #define Y2_CS_PIN                         DRIVER4_CS_PIN
+#endif
+
+#define Z2_STEP_PIN                         DRIVER5_ENABLE_PIN
+#define Z2_DIR_PIN                          DRIVER5_STEP_PIN
+#define Z2_ENABLE_PIN                       DRIVER5_DIR_PIN
 #ifndef Z2_CS_PIN
-  #define Z2_CS_PIN                         PC7
+  #define Z2_CS_PIN                         DRIVER5_CS_PIN
 #endif
 
-#define E0_STEP_PIN                         PF9   // MOTOR 4
-#define E0_DIR_PIN                          PF10
-#define E0_ENABLE_PIN                       PG2
+#define E0_STEP_PIN                         DRIVER6_ENABLE_PIN
+#define E0_DIR_PIN                          DRIVER6_STEP_PIN
+#define E0_ENABLE_PIN                       DRIVER6_DIR_PIN
 #ifndef E0_CS_PIN
-  #define E0_CS_PIN                         PF2
+  #define E0_CS_PIN                         DRIVER6_CS_PIN
 #endif
 
-#define E1_STEP_PIN                         PC13  // MOTOR 5
-#define E1_DIR_PIN                          PF0
-#define E1_ENABLE_PIN                       PF1
+#define E1_STEP_PIN                         DRIVER7_ENABLE_PIN
+#define E1_DIR_PIN                          DRIVER7_STEP_PIN
+#define E1_ENABLE_PIN                       DRIVER7_DIR_PIN
 #ifndef E1_CS_PIN
-  #define E1_CS_PIN                         PE4
-#endif
-
-#define E2_STEP_PIN                         PE2   // MOTOR 6
-#define E2_DIR_PIN                          PE3
-#define E2_ENABLE_PIN                       PD4
-#ifndef E2_CS_PIN
-
-  #define E2_CS_PIN                         PE1
-#endif
-
-#define E3_STEP_PIN                         PE6   // MOTOR 7
-#define E3_DIR_PIN                          PA14
-#define E3_ENABLE_PIN                       PE0
-#ifndef E3_CS_PIN
-  #define E3_CS_PIN                         PD3
+  #define E1_CS_PIN                         DRIVER7_CS_PIN
 #endif
 
 //
