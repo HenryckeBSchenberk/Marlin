@@ -104,10 +104,10 @@
 #define Y_DIAG_PIN                          DRIVER0_DIAG_PIN
 #define Z_DIAG_PIN                          DRIVER1_DIAG_PIN
 #define X2_DIAG_PIN                         DRIVER3_DIAG_PIN
-#define Y2_DIAG_PIN                         DRIVER4_DIAG_PIN
-#define Z2_DIAG_PIN                         DRIVER5_DIAG_PIN
-#define E0_DIAG_PIN                         DRIVER6_DIAG_PIN
-#define E1_DIAG_PIN                         DRIVER7_DIAG_PIN
+#define Y2_DIAG_PIN                         DRIVER3_DIAG_PIN
+#define Z2_DIAG_PIN                         DRIVER3_DIAG_PIN
+#define E0_DIAG_PIN                         DRIVER3_DIAG_PIN
+#define E1_DIAG_PIN                         DRIVER3_DIAG_PIN
 
 //
 // Z Probe (when not Z_MIN_PIN)
@@ -219,58 +219,58 @@
 //
 // Steppers
 //
-#define X_STEP_PIN                          DRIVER2_ENABLE_PIN
-#define X_DIR_PIN                           DRIVER2_STEP_PIN
-#define X_ENABLE_PIN                        DRIVER2_DIR_PIN
+#define X_STEP_PIN                          DRIVER2_STEP_PIN
+#define X_DIR_PIN                           DRIVER2_DIR_PIN
+#define X_ENABLE_PIN                        DRIVER2_ENABLE_PIN
 #ifndef X_CS_PIN
   #define X_CS_PIN                          DRIVER2_CS_PIN
 #endif
 
-#define Y_STEP_PIN                          DRIVER0_ENABLE_PIN
-#define Y_DIR_PIN                           DRIVER0_STEP_PIN
-#define Y_ENABLE_PIN                        DRIVER0_DIR_PIN
+#define Y_STEP_PIN                          DRIVER0_STEP_PIN
+#define Y_DIR_PIN                           DRIVER0_DIR_PIN
+#define Y_ENABLE_PIN                        DRIVER0_ENABLE_PIN
 #ifndef Y_CS_PIN
   #define Y_CS_PIN                          DRIVER0_CS_PIN
 #endif
 
-#define Z_STEP_PIN                          DRIVER1_ENABLE_PIN
-#define Z_DIR_PIN                           DRIVER1_STEP_PIN
-#define Z_ENABLE_PIN                        DRIVER1_DIR_PIN
+#define Z_STEP_PIN                          DRIVER1_STEP_PIN
+#define Z_DIR_PIN                           DRIVER1_DIR_PIN
+#define Z_ENABLE_PIN                        DRIVER1_ENABLE_PIN
 #ifndef Z_CS_PIN
   #define Z_CS_PIN                          DRIVER1_CS_PIN
 #endif
 
-#define X2_STEP_PIN                         DRIVER3_ENABLE_PIN
-#define X2_DIR_PIN                          DRIVER3_STEP_PIN
-#define X2_ENABLE_PIN                       DRIVER3_DIR_PIN
+#define X2_STEP_PIN                         DRIVER3_STEP_PIN
+#define X2_DIR_PIN                          DRIVER3_DIR_PIN
+#define X2_ENABLE_PIN                       DRIVER3_ENABLE_PIN
 #ifndef X2_CS_PIN
   #define X2_CS_PIN                         DRIVER3_CS_PIN
 #endif
 
-#define Y2_STEP_PIN                         DRIVER4_ENABLE_PIN
-#define Y2_DIR_PIN                          DRIVER4_STEP_PIN
-#define Y2_ENABLE_PIN                       DRIVER4_DIR_PIN
+#define Y2_STEP_PIN                         DRIVER4_STEP_PIN
+#define Y2_DIR_PIN                          DRIVER4_DIR_PIN
+#define Y2_ENABLE_PIN                       DRIVER4_ENABLE_PIN
 #ifndef Y2_CS_PIN
   #define Y2_CS_PIN                         DRIVER4_CS_PIN
 #endif
 
-#define Z2_STEP_PIN                         DRIVER5_ENABLE_PIN
-#define Z2_DIR_PIN                          DRIVER5_STEP_PIN
-#define Z2_ENABLE_PIN                       DRIVER5_DIR_PIN
+#define Z2_STEP_PIN                         DRIVER5_STEP_PIN
+#define Z2_DIR_PIN                          DRIVER5_DIR_PIN
+#define Z2_ENABLE_PIN                       DRIVER5_ENABLE_PIN
 #ifndef Z2_CS_PIN
   #define Z2_CS_PIN                         DRIVER5_CS_PIN
 #endif
 
-#define E0_STEP_PIN                         DRIVER6_ENABLE_PIN
-#define E0_DIR_PIN                          DRIVER6_STEP_PIN
-#define E0_ENABLE_PIN                       DRIVER6_DIR_PIN
+#define E0_STEP_PIN                         DRIVER6_STEP_PIN
+#define E0_DIR_PIN                          DRIVER6_DIR_PIN
+#define E0_ENABLE_PIN                       DRIVER6_ENABLE_PIN
 #ifndef E0_CS_PIN
   #define E0_CS_PIN                         DRIVER6_CS_PIN
 #endif
 
-#define E1_STEP_PIN                         DRIVER7_ENABLE_PIN
-#define E1_DIR_PIN                          DRIVER7_STEP_PIN
-#define E1_ENABLE_PIN                       DRIVER7_DIR_PIN
+#define E1_STEP_PIN                         DRIVER7_STEP_PIN
+#define E1_DIR_PIN                          DRIVER7_DIR_PIN
+#define E1_ENABLE_PIN                       DRIVER7_ENABLE_PIN
 #ifndef E1_CS_PIN
   #define E1_CS_PIN                         DRIVER7_CS_PIN
 #endif
