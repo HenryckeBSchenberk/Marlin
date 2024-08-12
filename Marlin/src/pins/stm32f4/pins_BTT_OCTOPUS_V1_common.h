@@ -49,8 +49,8 @@
 // Trinamic Stallguard pins
 //
 #define X_DIAG_PIN                          PG10 //PG6   // X-STOP
-#define Y_DIAG_PIN                          PG6  //PG9   // Y-STOP
-#define Z_DIAG_PIN                          PG9  //PG10  // Z-STOP
+#define Y_DIAG_PIN                          PG9  //PG9   // Y-STOP
+#define Z_DIAG_PIN                          PG6  //PG10  // Z-STOP
 #define Z2_DIAG_PIN                         PG11  // Z2-STOP
 #define E0_DIAG_PIN                         PG11  // E0DET
 #define E1_DIAG_PIN                         PG13  // E1DET
@@ -241,7 +241,7 @@
 #define HEATER_2_PIN                        PB10  // Heater2
 #define HEATER_3_PIN                        PB11  // Heater3
 
-#define FAN_PIN                             PA8   // Fan0
+#define FAN0_PIN                             PA8   // Fan0
 #define FAN1_PIN                            PE5   // Fan1
 #define FAN2_PIN                            PD12  // Fan2
 #define FAN3_PIN                            PD13  // Fan3
